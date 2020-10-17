@@ -36,4 +36,15 @@
         <tag>Python</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Python十大算法之插入排序Python代码简单实现</title>
+    <url>/lxb/df95721d.html</url>
+    <content><![CDATA[<h1 id="Python十大算法之插入排序Python代码简单实现"><a href="#Python十大算法之插入排序Python代码简单实现" class="headerlink" title="Python十大算法之插入排序Python代码简单实现"></a>Python十大算法之插入排序Python代码简单实现</h1><p><img src="https://img-blog.csdnimg.cn/20201017110805885.gif#pic_center" alt="在这里插入图片描述"></p>
+<p><strong><code>图片上是从已排好序的元素最大坐标开始比较的, 我的代码是从已排好序的元素的最小坐标开始,一个道理的</code></strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">插入排序 (个人理解)</span></span><br><span class="line"><span class="string">先假设第一个元素不动,从第二个元素开始,然后拿着第二个元素跟第一个(已经排好序的元素)进行对比,</span></span><br><span class="line"><span class="string">如果大于第一个元素就把这个元素放在第一个元素后面,现在已经排好两个元素了</span></span><br><span class="line"><span class="string">接着在拿第三个元素,跟已经排好序的元素进行对比,</span></span><br><span class="line"><span class="string">如果该元素遇到比它小的元素就放在它的后面, 以此类推</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sort_list</span>(<span class="params">list_</span>):</span></span><br><span class="line">    <span class="comment"># 先定义比较的轮数, 由于是从第二个元素开始的,所以轮数为 总元素个数减 1</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(list_)<span class="number">-1</span>):</span><br><span class="line">        <span class="comment"># 然后再定义每轮进行比较的次数,这个次数就是已经排好序的元素个数,每轮排好一个,默认排好一个, 所以次数就是轮次加 1</span></span><br><span class="line">        <span class="keyword">for</span> n <span class="keyword">in</span> range(<span class="number">1</span> + i):</span><br><span class="line">            <span class="comment"># 下面开始判断条件,</span></span><br><span class="line">            <span class="keyword">if</span> list_[i+<span class="number">1</span>] &lt; list_[n]:</span><br><span class="line">                list_[i+<span class="number">1</span>], list_[n] = list_[n],  list_[i+<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> list_</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    list_num = [<span class="number">23</span>, <span class="number">5</span>, <span class="number">0</span>, <span class="number">78</span>, <span class="number">56</span>, <span class="number">55</span>, <span class="number">77</span>, <span class="number">8</span>, <span class="number">2</span>]</span><br><span class="line">    print(sort_list(list_num))</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>Python 算法</tag>
+      </tags>
+  </entry>
 </search>
