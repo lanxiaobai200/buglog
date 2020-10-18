@@ -58,4 +58,107 @@
         <tag>爬虫</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Python自动化测试Unittest框架基本使用</title>
+    <url>/lxb/8bbff952.html</url>
+    <content><![CDATA[<h1 id="Unittest-框架"><a href="#Unittest-框架" class="headerlink" title="Unittest 框架"></a>Unittest 框架</h1><ul>
+<li>首先要知道这个框架是Python自带的, 不需要安装</li>
+<li>这个框架最重要的4 个核心<blockquote>
+<ol>
+<li>TestCase</li>
+<li>TestSuite</li>
+<li>TextTestRunner</li>
+<li>Fixture </li>
+</ol>
+</blockquote>
+<h2 id="TestCase"><a href="#TestCase" class="headerlink" title="TestCase"></a>TestCase</h2></li>
+<li>个人总结一下, 这个就是用测试用例继承的, 直接往下看吧</li>
+</ul>
+<p>学测试先了解断言把</p>
+<h2 id="断言"><a href="#断言" class="headerlink" title="断言"></a>断言</h2><p>概念：让程序代替人为判断测试程序执行结果是否符合预期结果的过程</p>
+<p><strong>断言分类</strong></p>
+<blockquote>
+<p>布尔型断言<br>比较断言<br>复杂断言</p>
+</blockquote>
+<ul>
+<li>看完概念再看一下代码吧好了解一点</li>
+<li>先写一个简单测试用例,<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> unittest</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestAdd</span>(<span class="params">unittest.TestCase</span>):</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_add</span>(<span class="params">self</span>):</span></span><br><span class="line">        a = <span class="number">12</span></span><br><span class="line">        print(<span class="string">&quot;-------- test_add 测试用例-------&quot;</span>)</span><br><span class="line">        b = <span class="number">5</span></span><br><span class="line">        <span class="comment"># assertEqual 这个方法验证arg1=arg2，不相等则fail(报错)</span></span><br><span class="line">        self.assertEqual(a+b, <span class="number">17</span>, msg=<span class="string">&quot;两个数相加,如果不相同会报错&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_sub</span>(<span class="params">self</span>):</span></span><br><span class="line">        print(<span class="string">&quot;-------- test_sub 测试用例-------&quot;</span>)</span><br><span class="line">        a = <span class="number">12</span></span><br><span class="line">        b = <span class="number">5</span></span><br><span class="line">        <span class="comment"># assertNotEqual  这个方法验证arg1=arg2，相等则fail(报错)</span></span><br><span class="line">        self.assertNotEqual(a+b, <span class="number">17</span>, msg=<span class="string">&quot;两个数相加, 如果等于17会报错&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">如果执行的时候,没有写main函数, 直接右键执行的时候记得把,鼠标的光标放到函数的外面,</span></span><br><span class="line"><span class="string">如果是放到某个函数里只会执行光标所在的那个测试函数</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line">        </span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意点: ==<strong>必须继承unittest.TestCase类, 测试用例的方法必须以 test 开头, 这点很重要</strong>==</p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>还有一点就是执行的时候注意:<br>==<strong>如果执行的时候,没有写main函数, 直接右键执行的时候记得把,鼠标的光标放到函数的外面,<br>如果是放到某个函数里只会执行光标所在的那个测试函数</strong>==</p>
+</blockquote>
+<ul>
+<li>这个测试用例只使用了两个布尔型断言,下面列出其他的布尔型断言,使用方法大致一样</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>断言方法</th>
+<th>断言描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>assertEqual(arg1, arg2, msg=None)</td>
+<td>验证arg1=arg2，不等则fail</td>
+</tr>
+<tr>
+<td>assertNotEqual(arg1, arg2, msg=None)</td>
+<td>验证arg1 != arg2, 相等则fail</td>
+</tr>
+<tr>
+<td>assertTrue(expr, msg=None)</td>
+<td>验证expr是true，如果为false，则fail</td>
+</tr>
+<tr>
+<td>assertFalse(expr,msg=None)</td>
+<td>验证expr是false，如果为true，则fail</td>
+</tr>
+<tr>
+<td>assertIsNone(expr, msg=None)</td>
+<td>验证expr是None，不是则fail</td>
+</tr>
+<tr>
+<td>assertIsNotNone(expr, msg=None)</td>
+<td>验证expr不是None，是则fail</td>
+</tr>
+<tr>
+<td>assertIn(arg1, arg2, msg=None)</td>
+<td>验证arg1是arg2的子串，不是则fail</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>mag: 就是显示报错的描述</p>
+</blockquote>
+<hr>
+<h2 id="Fixture"><a href="#Fixture" class="headerlink" title="Fixture"></a>Fixture</h2><ul>
+<li>这就是一个概述，对一个测试用例环境的搭建和销毁就是一个Fixture</li>
+<li>不是很理解是吧, 直接看代码(个人觉得没必要理解这个名词,知道是干什么的就行)</li>
+<li>把下面代码写入到 test_unittest.py文件下<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> unittest</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestAdd</span>(<span class="params">unittest.TestCase</span>):</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">setUp</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        方法名固定，在每个测试函数执行前，执行一次,多个测试函数，执行多次</span></span><br><span class="line"><span class="string">        一般做初始化工作, 比如: 实例化一个浏览器、浏览器最大化、隐式等待设置等需要提前的操作</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        print(<span class="string">&quot;测试函数前执行&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">tearDown</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        方法名固定，在每个测试函数执行后，执行一次</span></span><br><span class="line"><span class="string">        一般做结束工作: 比如: 推出浏览器、关闭浏览器</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        print(<span class="string">&quot;测试函数执行后 teardown&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_add</span>(<span class="params">self</span>):</span></span><br><span class="line">        a = <span class="number">12</span></span><br><span class="line">        print(<span class="string">&quot;-------- test_add 测试用例-------&quot;</span>)</span><br><span class="line">        b = <span class="number">5</span></span><br><span class="line">        self.assertEqual(a+b, <span class="number">17</span>, msg=<span class="string">&quot;两个数相加,如果不相同会报错&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_sub</span>(<span class="params">self</span>):</span></span><br><span class="line">        print(<span class="string">&quot;-------- test_sub 测试用例-------&quot;</span>)</span><br><span class="line">        a = <span class="number">12</span></span><br><span class="line">        b = <span class="number">5</span></span><br><span class="line">        self.assertNotEqual(a+b, <span class="number">17</span>, msg=<span class="string">&quot;两个数相加, 如果等于17会报错&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">使用主函数,调用unittest.main()方法直接执行改文件下的所有测试用例</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    unittest.main()</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>看到代码, 是不是多啦两个方法setUp(self) ,tearDown(self)<br>setUp、tearDown就是一个Fixture</p>
+</blockquote>
+</li>
+</ul>
+<p>下面讲述第三种执行的方法: 使用run文件执行<br>创建一个run_unittest.py 文件, 这个文件用来执行其它文件的测试用例<br>看代码:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> unittest</span><br><span class="line"><span class="comment"># 直接导入刚才写好的测试类</span></span><br><span class="line"><span class="keyword">from</span> test_unittest <span class="keyword">import</span> TestAdd</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">使用run文件执行unittest 文件时, 可以直接导入</span></span><br><span class="line"><span class="string">这时 unittest 会自动查找导入问价中类去执行</span></span><br><span class="line"><span class="string">但是文件的开头以test 文件的类和函数也必须以test开头</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    unittest.main()</span><br></pre></td></tr></table></figure>
+
+<h2 id="TestSuite-和-TextTestRunner"><a href="#TestSuite-和-TextTestRunner" class="headerlink" title="TestSuite 和 TextTestRunner"></a>TestSuite 和 TextTestRunner</h2><ul>
+<li>我是使用run 文件 写的, 创建一个执行文件, 话不多说, 直接看代码, 注释就是解释</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> unittest</span><br><span class="line"><span class="keyword">from</span> test_unittest <span class="keyword">import</span> TestAdd</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">使用run文件执行unittest 文件时, 可以直接导入</span></span><br><span class="line"><span class="string">这时 unittest 会自动查找导入问价中类去执行</span></span><br><span class="line"><span class="string">但是文件的开头以test 文件的类和函数也必须以test开头</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    TestSuite   可以把这个方法看成一个测试集合</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># 先创建一个 TestSuite 的实例化对象</span></span><br><span class="line">    suite = unittest.TestSuite()</span><br><span class="line">    <span class="comment"># 然后在使用 addTest方法把写好的测试用例放到这个对象里</span></span><br><span class="line">    <span class="comment"># suite.addTest(测试类名(&quot;方法名&quot;)) # 单个添加</span></span><br><span class="line">    <span class="comment"># suite.addTest([测试类名(&quot;方法名&quot;),测试类名(&quot;方法名&quot;),...])  # 批量添加</span></span><br><span class="line">    suite.addTest(TestAdd(<span class="string">&quot;test_add&quot;</span>))</span><br><span class="line"></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    TextTestRunner  有创建测试集合的方法,肯定就有执行测试集合的方法</span></span><br><span class="line"><span class="string">    TextTestRunner 就是用来执行测试集合的</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># 先实例化一个执行集合的 TextTestRunner对象</span></span><br><span class="line">    runner = unittest.TextTestRunner()</span><br><span class="line">    <span class="comment"># 然后执行:  执行对象.run(测试集对象)</span></span><br><span class="line">    runner.run(suite)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="defaultTestLoader-使用"><a href="#defaultTestLoader-使用" class="headerlink" title="defaultTestLoader 使用"></a>defaultTestLoader 使用</h3><ul>
+<li>先说一下, 我的测试用例 和 执行文件是在一个目录下的, 直接看代码</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> unittest</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">使用run文件执行unittest 文件时, 可以直接导入</span></span><br><span class="line"><span class="string">这时 unittest 会自动查找导入问价中类去执行</span></span><br><span class="line"><span class="string">但是文件的开头以test 文件的类和函数也必须以test开头</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    defaultTestLoader</span></span><br><span class="line"><span class="string">    使用unittest.defaultTestLoader()类, 这个类的作用就是,调用这个类的discover()方法, 搜索指定目录下指定开头的.py文件,</span></span><br><span class="line"><span class="string">    并将搜索到的测试用例组装成一个测试集合, 听上去是不是和 TestSuite 的作用差不多</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># 先确定一个要搜索的路径</span></span><br><span class="line">    test_dir = <span class="string">&quot;./&quot;</span></span><br><span class="line">    <span class="comment"># 然后创建集合对象</span></span><br><span class="line">    dis = unittest.defaultTestLoader.discover(test_dir, pattern=<span class="string">&#x27;test_*.py&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 然后使用 TextTestRunner 运行这个测试集合</span></span><br><span class="line">    runner = unittest.TextTestRunner()</span><br><span class="line">    runner.run(dis)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>Python自动化测试</tag>
+      </tags>
+  </entry>
 </search>
