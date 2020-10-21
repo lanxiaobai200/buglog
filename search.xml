@@ -225,4 +225,42 @@
         <tag>Python自动化测试</tag>
       </tags>
   </entry>
+  <entry>
+    <title>先有本地仓库再添加远程仓库,使用Git仓库遇到的bug</title>
+    <url>/lxb/d9bfa406.html</url>
+    <content><![CDATA[<h2 id="git代码仓库使用遇到的情况"><a href="#git代码仓库使用遇到的情况" class="headerlink" title="git代码仓库使用遇到的情况"></a>git代码仓库使用遇到的情况</h2><p>先说我的报错代码</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"> ! [rejected]        master -&gt; master (non-fast-forward)</span><br><span class="line">error: failed to push some refs to &#x27;https://gitee.com/lanxiaobai/unittest.git&#x27;</span><br><span class="line">hint: Updates were rejected because the tip of your current branch is behind</span><br><span class="line">hint: its remote counterpart. Integrate the remote changes (e.g.</span><br><span class="line">hint: &#x27;git pull ...&#x27;) before pushing again.</span><br><span class="line">hint: See the &#x27;Note about fast-forwards&#x27; in &#x27;git push --help&#x27; for details.</span><br></pre></td></tr></table></figure>
+<p>这个问题我遇到很多次, 每次都知道原因, 但每次都忘,所以在这里记录一下</p>
+<blockquote>
+<p>这个错误发生的情景是, 先<code>git init</code>创建啦本地的仓库, 然后又想把这些代码上传到远端, 就在远端创建了一个仓库, 然后使用 <code> git remote add origin 仓库链接</code> 进行啦链接, 然后进行git add . &amp; git commit -m “” 之后进行git push的时候就会报这种错误</p>
+</blockquote>
+<p>遇到先创建本地仓库, 在连接远端仓库的时候, 先初始化本地仓库</p>
+<blockquote>
+<p><code>git init</code>  </p>
+</blockquote>
+<p>进行连接远程仓库</p>
+<blockquote>
+<p><code>git remote add origin 仓库链接</code></p>
+</blockquote>
+<p>然后 , 因为本地和远端肯定有差异,所以先pull进行同步(个人理解,有错指出)</p>
+<blockquote>
+<p><code>git pull origin master --allow-unrelated-histories</code></p>
+</blockquote>
+<p>再进行</p>
+<blockquote>
+<p><code>git add .</code><br><code>gitcommit -m &quot;描述信息&quot;</code></p>
+</blockquote>
+<p><strong>最后一步也很重要,-u 只需要第一次加，作用是将本地仓库与远程仓库相关联起来</strong></p>
+<blockquote>
+<p><code>git push -u origin master</code></p>
+</blockquote>
+<p>之后再操作时就</p>
+<blockquote>
+<p>git add .<br>git commit -m “描述信息”<br>git push</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
 </search>
